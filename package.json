@@ -1,0 +1,16 @@
+{
+  "name": "social_app",
+  "version": "1.0.0",
+  "description": "'This is app for create and reading a posts and makeing an interact with it'",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "node --watch server"
+  },
+  "author": "'Islam Ahmed'",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

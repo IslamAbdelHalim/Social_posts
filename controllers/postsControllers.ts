@@ -11,8 +11,8 @@ const postsDb = new InMemoryDataStore();
  * @method GET
  * @access public
  */
-export const getAllPostsHandler: RequestHandler = (req, res) => {
-  const posts = postsDb.listPosts();
+export const getAllPostsHandler: RequestHandler = async (req, res) => {
+  const posts = await postsDb.listPosts();
   res.status(200).json({ posts });
 };
 

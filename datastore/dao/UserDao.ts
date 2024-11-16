@@ -1,10 +1,10 @@
 import { User } from '../../models/types';
 
 export interface UserDao {
-  createUser(user: User): void;
-  getUserByEmail(email: string): User | undefined;
-  getUserByUsername(username: string): User | undefined;
-  deleteUserById(id: string): void;
+  createUser(user: User): Promise<void>;
+  getUserByEmail(email: string): Promise<User | undefined>;
+  getUserByUsername(username: string): Promise<User | undefined>;
+  deleteUserById(id: string): Promise<void>;
 }
 
 // export class UserDao {

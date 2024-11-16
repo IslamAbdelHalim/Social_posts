@@ -1,10 +1,10 @@
 import { Post } from '../../models/types';
 
 export interface PostDao {
-  listPosts(): Post[];
-  createPost(post: Post): void;
-  getPostById(id: string): Post | undefined;
-  deletePostById(id: string): void;
+  listPosts(): Promise<Post[]>;
+  createPost(post: Post): Promise<void>;
+  getPostById(id: string): Promise<Post | undefined>;
+  deletePostById(id: string): Promise<void>;
 }
 
 // export class PostsDao {

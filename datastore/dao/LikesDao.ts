@@ -1,7 +1,7 @@
 import { Like } from '../../models/types';
 
 export interface LikeDao {
-  createLike(like: Like): void;
+  createLike(like: Like): Promise<void>;
 }
 
 // export class LikesDao {

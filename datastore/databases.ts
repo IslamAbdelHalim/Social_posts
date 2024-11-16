@@ -8,40 +8,47 @@ export class InMemoryDataStore implements DataStore {
   private likes: Like[] = [];
   private comment: Comment[] = [];
 
-  createUser(user: User): void {
+  async createUser(user: User): Promise<void> {
     this.users.push(user);
+    return Promise.resolve();
   }
-  getUserByEmail(email: string): User | undefined {
-    return this.users.find((user) => user.email === email);
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    return await this.users.find((user) => user.email === email);
   }
-  getUserByUsername(username: string): User | undefined {
-    return this.users.find((user) => user.username === username);
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return await this.users.find((user) => user.username === username);
   }
-  deleteUserById(id: string): void {
+  deleteUserById(id: string): Promise<void> {
     this.users.filter((user) => user.id !== id);
+    return Promise.resolve();
   }
-  listPosts(): Post[] {
-    return this.posts;
+  async listPosts(): Promise<Post[]> {
+    return await this.posts;
   }
-  createPost(post: Post): void {
+  createPost(post: Post): Promise<void> {
     this.posts.push(post);
+    return Promise.resolve();
   }
-  getPostById(id: string): Post | undefined {
-    return this.posts.find((post) => post.id === id);
+  async getPostById(id: string): Promise<Post | undefined> {
+    return await this.posts.find((post) => post.id === id);
   }
-  deletePostById(id: string): void {
+  deletePostById(id: string): Promise<void> {
     this.posts.filter((post) => post.id === id);
+    return Promise.resolve();
   }
-  createLike(like: Like): void {
+  createLike(like: Like): Promise<void> {
     this.likes.push(like);
+    return Promise.resolve();
   }
-  createComment(comment: Comment): void {
+  createComment(comment: Comment): Promise<void> {
     this.comment.push(comment);
+    return Promise.resolve();
   }
-  listComments(postId: string): Comment[] {
-    return this.comment;
+  async listComments(postId: string): Promise<Comment[]> {
+    return await this.comment;
   }
-  deleteComment(id: string): void {
+  deleteComment(id: string): Promise<void> {
     this.comment.filter((comment) => comment.id !== id);
+    return Promise.resolve();
   }
 }

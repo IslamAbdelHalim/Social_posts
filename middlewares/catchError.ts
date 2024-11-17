@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 
-export default function catchError(fn: Function): RequestHandler {
+export default function catchError(fn: RequestHandler): RequestHandler {
   return (req, res, next) => {
-    fn(req, res, next).catch(next);
+    Promise.resolve(fn(req, res, next)).catch(next);
   };
 }

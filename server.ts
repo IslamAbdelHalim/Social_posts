@@ -1,16 +1,21 @@
 import express from 'express';
+import { initDb } from './datastore/dataStore';
 import ErrorHandling from './middlewares/errorHandling';
 import requestLoggerMiddleware from './middlewares/logger';
 import router from './routes/index';
 
-const app = express();
+(async () => {
+  await initDb();
 
-app.use(express.json());
+  const app = express();
 
-app.use(requestLoggerMiddleware);
+  app.use(express.json());
 
-app.use('/', router);
+  app.use(requestLoggerMiddleware);
 
-app.use(ErrorHandling);
+  app.use('/v1', router);
 
-app.listen(5000, () => console.log('the server is running'));
+  app.use(ErrorHandling);
+
+  app.listen(5000, () => console.log('the server is running'));
+})();

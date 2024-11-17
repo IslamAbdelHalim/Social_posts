@@ -1,0 +1,34 @@
+CREATE TABLE IF NOT EXISTS Users (
+  id        VARCHAR PRIMARY KEY ,
+  firstName VARCHAR ( 255 ) NOT NULL,
+  lastName  VARCHAR ( 255 ) NOT NULL,
+  email     VARCHAR ( 255 ) NOT NULL UNIQUE,
+  username  VARCHAR ( 255 ) NOT NULL UNIQUE,
+  password  VARCHAR ( 255 ) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Posts (
+  id       VARCHAR PRIMARY KEY,
+  title    VARCHAR NOT NULL,
+  url      VARCHAR NOT NULL UNIQUE,
+  userId   VARCHAR NOT NULL, 
+  postedAt INTEGER NOT NULL,
+  FOREIGN KEY (userId) REFERENCES Users (id)
+);
+
+CREATE TABLE Likes (
+  userId VARCHAR NOT NULL,
+  postId VARCHAR NOT NULL,
+  FOREIGN KEY (userId) REFERENCES Users (id),
+  FOREIGN KEY (postId) REFERENCES Posts (id)
+);
+
+CREATE TABLE Comments (
+  id       INTEGER PRIMARY KEY AUTOINCREMENT,
+  userId   VARCHAR NOT NULL,
+  postId   VARCHAR NOT NULL,
+  comment  VARCHAR NOT NULL,
+  postedAt INTEGER NOT NULL,
+  FOREIGN KEY (userId) REFERENCES Users (id),
+  FOREIGN KEY (postId) REFERENCES Posts (id)
+);

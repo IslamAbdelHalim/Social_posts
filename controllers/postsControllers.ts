@@ -1,9 +1,8 @@
 import crypto from 'crypto';
 import { RequestHandler } from 'express-serve-static-core';
-import { InMemoryDataStore } from '../datastore/databases';
-import { Post } from '../models/types';
 
-const postsDb = new InMemoryDataStore();
+import { db } from '../datastore/dataStore';
+import { Post } from '../models/types';
 
 /**
  * @desc get all posts
@@ -12,7 +11,7 @@ const postsDb = new InMemoryDataStore();
  * @access public
  */
 export const getAllPostsHandler: RequestHandler = async (req, res) => {
-  const posts = await postsDb.listPosts();
+  const posts = await db.listPosts();
   res.status(200).json({ posts });
 };
 
@@ -24,7 +23,7 @@ export const getAllPostsHandler: RequestHandler = async (req, res) => {
  */
 export const getPostByIdHandler: RequestHandler = (req, res) => {
   const id = req.params.id;
-  const post = postsDb.getPostById(id);
+  const post = db.getPostById(id);
   if (!post) {
     res.status(404).json({
       status: 'not found',
@@ -43,7 +42,7 @@ export const getPostByIdHandler: RequestHandler = (req, res) => {
  * @method POST
  * @access public
  */
-export const createPostHandler: RequestHandler = (req, res) => {
+export const createPostHandler: RequestHandler = async (req, res) => {
   if (!req.body.title || !req.body.url || !req.body.userId) {
     res.sendStatus(400);
   }
@@ -56,7 +55,7 @@ export const createPostHandler: RequestHandler = (req, res) => {
     postedAt: Date.now(),
   };
 
-  postsDb.createPost(post);
+  await db.createPost(post);
   res.status(201).json({ message: 'Post is created' });
 };
 
@@ -68,6 +67,6 @@ export const createPostHandler: RequestHandler = (req, res) => {
  */
 export const deletePostByIdHandler: RequestHandler = (req, res) => {
   const id = req.params.id;
-  postsDb.deletePostById(id);
+  db.deletePostById(id);
   res.status(204);
 };

@@ -7,7 +7,7 @@ import { Post } from '../models/types';
 /**
  * @desc get all posts
  * @routes /posts
- * @method GET
+ * @method get
  * @access public
  */
 export const getAllPostsHandler: RequestHandler = async (req, res) => {
@@ -18,7 +18,7 @@ export const getAllPostsHandler: RequestHandler = async (req, res) => {
 /**
  * @desc get post By id
  * @routes /posts/:id
- * @method GET
+ * @method get
  * @access public
  */
 export const getPostByIdHandler: RequestHandler = (req, res) => {
@@ -39,7 +39,7 @@ export const getPostByIdHandler: RequestHandler = (req, res) => {
 /**
  * @desc create a new Post
  * @routes /posts
- * @method POST
+ * @method post
  * @access public
  */
 export const createPostHandler: RequestHandler = async (req, res) => {
@@ -60,13 +60,13 @@ export const createPostHandler: RequestHandler = async (req, res) => {
 };
 
 /**
- * @desc cDelete Post By id
+ * @desc Delete Post By id
  * @routes /posts/:id
- * @method DELETE
+ * @method delete
  * @access public
  */
-export const deletePostByIdHandler: RequestHandler = (req, res) => {
+export const deletePostByIdHandler: RequestHandler = async (req, res) => {
   const id = req.params.id;
-  db.deletePostById(id);
+  await db.deletePostById(id);
   res.status(204);
 };

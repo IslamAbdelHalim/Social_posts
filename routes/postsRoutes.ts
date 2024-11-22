@@ -6,8 +6,11 @@ import {
   getPostByIdHandler,
 } from '../controllers/postsControllers';
 import catchError from '../middlewares/catchError';
+import { protectRoute } from '../middlewares/protectRoute';
 
 const router = express.Router();
+
+router.use(protectRoute);
 
 router
   .route('/')

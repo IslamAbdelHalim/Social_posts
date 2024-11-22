@@ -10,36 +10,34 @@ We'll use a relational database (schema follows) to fast retrieval of posts and 
 We ruled out storage-as-a-service services such as Firestore and the like in order to showcase building a standalone backend for educational purposes.
 Schema:
 
-We'll need at least the following entities to implement the service:
-
 Users:
-Column 	Type
-ID 	STRING/UUID
-First/Last name 	STRING
-Password 	STRING
-Email 	STRING
-Username 	STRING
+Column Type
+ID STRING/UUID
+First/Last name STRING
+Password STRING
+Email STRING
+Username STRING
 
 Posts:
-Column 	Type
-ID 	STRING/UUID
-Title 	STRING
-URL 	STRING
-UserId 	STRING/UUID
-PostedAt 	Timestamp
+Column Type
+ID STRING/UUID
+Title STRING
+URL STRING
+UserId STRING/UUID
+PostedAt Timestamp
 
 Likes:
-Column 	Type
-UserId 	STRING/UUID
-PostId 	STRING
+Column Type
+UserId STRING/UUID
+PostId STRING
 
 Comments:
-Column 	Type
-ID 	STRING
-UserId 	STRING/UUID
-PostId 	STRING
-Comment 	STRING
-PostedAt 	Timestamp
+Column Type
+ID STRING
+UserId STRING/UUID
+PostId STRING
+Comment STRING
+PostedAt Timestamp
 Server
 
 A simple HTTP server is responsible for authentication, serving stored data, and potentially ingesting and serving analytics data.
@@ -55,16 +53,16 @@ API
 
 Auth:
 
-/signIn  [POST]
-/signUp  [POST]
+/signIn [POST]
+/signUp [POST]
 /signOut [POST]
 
 Posts:
 
 /posts/list [GET]
-/posts/new  [POST]
-/posts/:id  [GET]
-/posts/:id  [DELETE]
+/posts/new [POST]
+/posts/:id [GET]
+/posts/:id [DELETE]
 
 Likes:
 
@@ -72,9 +70,9 @@ Likes:
 
 Comments:
 
-/comments/new  [POST]
+/comments/new [POST]
 /comments/list [GET]
-/comments/:id  [DELETE]
+/comments/:id [DELETE]
 
 Clients
 

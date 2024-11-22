@@ -1,11 +1,14 @@
-import express from 'express';
+import express from 'express'
+import dotenv from 'dotenv';
 import { initDb } from './datastore/dataStore';
-import ErrorHandling from './middlewares/errorHandling';
+import { notFoundErrorHandling, globalErrorHandling } from './middlewares/errorHandling';
 import requestLoggerMiddleware from './middlewares/logger';
 import router from './routes/index';
 
 (async () => {
   await initDb();
+
+  dotenv.config();
 
   const app = express();
 
@@ -15,7 +18,9 @@ import router from './routes/index';
 
   app.use('/v1', router);
 
-  app.use(ErrorHandling);
+  app.use(notFoundErrorHandling);
 
-  app.listen(5000, () => console.log('the server is running'));
+  app.use(globalErrorHandling);
+
+  app.listen(5000, () => console.log('the server is running on port 5000'));
 })();

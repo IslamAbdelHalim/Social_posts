@@ -5,12 +5,15 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon --exec ts-node -r ts-node/register/transpile-only server.ts"
+    "dev": "nodemon --legacy-watch --exec ts-node server.ts"
   },
   "author": "'Islam Ahmed'",
   "license": "ISC",
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },

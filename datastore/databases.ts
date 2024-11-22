@@ -30,7 +30,7 @@ export class InMemoryDataStore implements DataStore {
     return Promise.resolve();
   }
   async getPostById(id: string): Promise<Post | undefined> {
-    return await this.posts.find((post) => post.id === id);
+    return this.posts.find((post) => post.id === id);
   }
   deletePostById(id: string): Promise<void> {
     this.posts.filter((post) => post.id === id);
